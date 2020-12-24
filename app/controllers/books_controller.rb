@@ -26,9 +26,17 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def update
+    if @book.update(book_params)
+      redirect_to book_path(@book), notice: "You have updated book successfully."
+    else
+      render "edit"
+    end
+  end
+
   def destroy
-    @book.destoy
-    redirect_to books
+    @book.destroy
+    redirect_to books_path
   end
 
   private
